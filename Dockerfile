@@ -2,6 +2,7 @@ FROM swr.cn-north-4.myhuaweicloud.com/ddn-k8s/docker.io/python:3.9-slim
 
 WORKDIR /app
 
+RUN sed -i s@/archive.ubuntu.com/@/mirrors.aliyun.com/@g /etc/apt/sources.list && sed -i s@/deb.debian.org/@/mirrors.aliyun.com/@g /etc/apt/sources.list
 # 安装Node.js作为JavaScript运行时
 RUN apt-get update && apt-get install -y \
     curl \
