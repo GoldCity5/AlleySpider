@@ -2,13 +2,10 @@ FROM swr.cn-north-4.myhuaweicloud.com/ddn-k8s/docker.io/python:3.9-slim
 
 WORKDIR /app
 
-RUN sed -i s@/archive.ubuntu.com/@/mirrors.aliyun.com/@g /etc/apt/sources.list && sed -i s@/deb.debian.org/@/mirrors.aliyun.com/@g /etc/apt/sources.list
-# 安装Node.js作为JavaScript运行时
+# 安装Node.js作为JavaScript运行时（使用国内源）
 RUN apt-get update && apt-get install -y \
     curl \
-    gnupg \
-    && curl -sL https://deb.nodesource.com/setup_14.x | bash - \
-    && apt-get install -y nodejs \
+    && curl -sL https://registry.npmmirror.com/-/binary/node/v14.21.3/node-v14.21.3-linux-x64.tar.gz | tar xz -C /usr/local --strip-components=1 \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
