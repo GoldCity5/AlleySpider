@@ -5,7 +5,7 @@ WORKDIR /app
 # 安装依赖
 COPY requirements.txt .
 
-RUN pip install --upgrade pip && pip config set global.index-url http://mirrors.cloud.tencent.com/pypi/simple && \
+RUN pip config set global.index-url http://mirrors.cloud.tencent.com/pypi/simple && \
      pip config set global.trusted-host mirrors.cloud.tencent.com
 
 
