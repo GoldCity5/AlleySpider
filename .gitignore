@@ -12,3 +12,9 @@ __pycache__/
 build/
 
 aria2c.exe
+/.idea/.gitignore
+/.idea/AlleySpider.iml
+/.idea/misc.xml
+/.idea/modules.xml
+/.idea/inspectionProfiles/profiles_settings.xml
+/.idea/vcs.xml
