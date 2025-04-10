@@ -3,12 +3,18 @@ FROM swr.cn-north-4.myhuaweicloud.com/ddn-k8s/docker.io/python:3.9-slim
 WORKDIR /app
 
 # 使用国内镜像源
-RUN echo "deb https://mirrors.aliyun.com/debian/ bullseye main contrib non-free" > /etc/apt/sources.list.d/aliyun.list \
-    && echo "deb https://mirrors.aliyun.com/debian/ bullseye-updates main contrib non-free" >> /etc/apt/sources.list.d/aliyun.list \
-    && echo "deb https://mirrors.aliyun.com/debian-security bullseye-security main contrib non-free" >> /etc/apt/sources.list.d/aliyun.list
+RUN #echo "deb https://mirrors.aliyun.com/debian/ bullseye main contrib non-free" > /etc/apt/sources.list.d/aliyun.list \
+#    && echo "deb https://mirrors.aliyun.com/debian/ bullseye-updates main contrib non-free" >> /etc/apt/sources.list.d/aliyun.list \
+#    && echo "deb https://mirrors.aliyun.com/debian-security bullseye-security main contrib non-free" >> /etc/apt/sources.list.d/aliyun.list
 
-# 安装Node.js作为JavaScript运行时（使用国内源）  apt-get update &&
-RUN apt-get install -y \
+RUN echo "">/etc/sources.list \
+    && echo "deb http://mirrors.ustc.edu.cn/debian/ buster main">>/etc/sources.list \
+    && echo "deb http://mirrors.ustc.edu.cn/debian/deb:ian-security buster/updates main">>/etc/sources.list \
+    && echo "deb http://mirrors.ustc.edu.cn/debian/deb:ian buster-updates main">>/etc/sources.list
+
+
+# 安装Node.js作为JavaScript运行时（使用国内源）
+RUN apt-get update && apt-get install -y \
     curl \
     && curl -sL https://registry.npmmirror.com/-/binary/node/v14.21.3/node-v14.21.3-linux-x64.tar.gz | tar xz -C /usr/local --strip-components=1 \
     && apt-get clean \
