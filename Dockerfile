@@ -7,8 +7,8 @@ RUN echo "deb https://mirrors.aliyun.com/debian/ bullseye main contrib non-free"
     && echo "deb https://mirrors.aliyun.com/debian/ bullseye-updates main contrib non-free" >> /etc/apt/sources.list.d/aliyun.list \
     && echo "deb https://mirrors.aliyun.com/debian-security bullseye-security main contrib non-free" >> /etc/apt/sources.list.d/aliyun.list
 
-# 安装Node.js作为JavaScript运行时（使用国内源）
-RUN apt-get update && apt-get install -y \
+# 安装Node.js作为JavaScript运行时（使用国内源）  apt-get update &&
+RUN apt-get install -y \
     curl \
     && curl -sL https://registry.npmmirror.com/-/binary/node/v14.21.3/node-v14.21.3-linux-x64.tar.gz | tar xz -C /usr/local --strip-components=1 \
     && apt-get clean \
